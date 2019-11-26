@@ -52,6 +52,8 @@ body {
 
 .site-wrapper {
     padding: 3vw;
+    margin: 0 auto;
+    max-width: 1024px;
     min-height: 100vh;
 }
 @media (max-width: 850px) {
