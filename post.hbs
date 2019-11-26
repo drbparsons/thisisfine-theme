@@ -1,0 +1,107 @@
+{{!< default}}
+
+{{#post}}
+<article class="post-content {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+
+    <header class="post-content-header">
+        <h1 class="post-content-title">{{title}}</h1>
+        <div class="post-full-byline">
+            <section class="post-full-byline-content">
+                <ul class="author-list">
+                    {{#foreach authors}}
+                    <li class="author-list-item">
+                        <div class="author-card">
+                            {{#if profile_image}}
+                            <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                            {{else}}
+                            <div class="author-profile-image">{{> "icons/avatar"}}</div>
+                            {{/if}}
+                            <div class="author-info">
+                                {{#if bio}}
+                                <div class="bio">
+                                    <h2>{{name}}</h2>
+                                    <p>{{bio}}</p>
+                                    <p><a href="{{url}}">More posts</a> by {{name}}.</p>
+                                </div>
+                                {{else}}
+                                <h2>{{name}}</h2>
+                                <p>Read <a href="{{url}}">more posts</a> by this author.</p>
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{#if profile_image}}
+                        <a href="{{url}}" class="author-avatar">
+                            <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                        </a>
+                        {{else}}
+                        <a href="{{url}}" class="author-avatar author-profile-image">{{> "icons/avatar"}}</a>
+                        {{/if}}
+                    </li>
+                    {{/foreach}}
+                </ul>
+                <section class="post-full-byline-meta">
+                    <h4 class="author-name">{{authors}}</h4>
+                    <div class="byline-meta-content">
+                        <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                        <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </header>
+
+    {{#if custom_excerpt}}
+        <p class="post-content-excerpt">{{custom_excerpt}}</p>
+    {{/if}}
+
+    {{#if feature_image}}
+    <div class="post-content-image">
+        <img class="kg-image" src="{{feature_image}}" alt="{{title}}" />
+    </div>
+    {{/if}}
+
+    <div class="post-content-body">
+        {{content}}
+    </div>
+
+    {{!-- Email subscribe form at the bottom of the page --}}
+    {{#if @labs.subscribers}}
+    <section class="subscribe-form">
+        <h3 class="subscribe-form-title">Subscribe to {{@site.title}}</h3>
+        <p>Get the latest posts delivered right to your inbox</p>
+        {{subscribe_form placeholder="youremail@example.com"}}
+    </section>
+    {{/if}}
+
+    <footer class="post-content-footer">
+
+        {{!-- There are two options for how we display the byline/author-info.
+        If the post has more than one author, we load a specific template
+        from includes/byline-multiple.hbs, otherwise, we just use the
+        default byline. --}}
+
+
+    </footer>
+
+    {{!--
+    <section class="post-content-comments">
+        If you want to embed comments, this is a good place to do it!
+    </section>
+    --}}
+
+</article>
+{{/post}}
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+<script>
+    var images = document.querySelectorAll('.kg-gallery-image img');
+    images.forEach(function (image) {
+        var container = image.closest('.kg-gallery-image');
+        var width = image.attributes.width.value;
+        var height = image.attributes.height.value;
+        var ratio = width / height;
+        container.style.flex = ratio + ' 1 0%';
+    })
+</script>
+{{/contentFor}}
