@@ -439,6 +439,14 @@ body {
     display: block;
 }
 
+.post-card-external-link {
+    display: block;
+}
+
+.post-card-external-link svg {
+    height: 1.8rem;
+}
+
 .post-card-content {
     flex: 1 1 auto;
     display: flex;

@@ -10,19 +10,27 @@ For the rest, just output a smaller background image
 {{else}}
   <article class="post-card {{post_class}} {{#if feature_image}}with-image" style="background-image: url({{img_url feature_image size="l"}}){{else}}no-image{{/if}}">
 {{/has}}
-  {{#if featured}}
-    <a class="post-card-link" href="{{url}}">
+  {{#has tag="Link"}}
+    <a href="{{excerpt}}" target="_blank" rel="noopener" class="post-card-link post-card-external-link">
       <div class="post-card-content">
-        <h2 class="post-card-title">{{title}}</h2>
+        {{> "icons/link"}}
       </div>
     </a>
-  {{else if feature_image}}
-    <div class="post-card-content"></div>
   {{else}}
-    <a class="post-card-link" href="{{url}}">
-      <div class="post-card-content">
-        <h2 class="post-card-title">{{title}}</h2>
-      </div>
-    </a>
-  {{/if}}
+    {{#if featured}}
+      <a class="post-card-link" href="{{url}}">
+        <div class="post-card-content">
+          <h2 class="post-card-title">{{title}}</h2>
+        </div>
+      </a>
+    {{else if feature_image}}
+      <div class="post-card-content"></div>
+    {{else}}
+      <a class="post-card-link" href="{{url}}">
+        <div class="post-card-content">
+          <h2 class="post-card-title">{{title}}</h2>
+        </div>
+      </a>
+    {{/if}}
+  {{/has}}
 </article>

@@ -2,7 +2,7 @@
     "name": "thisisfine",
     "description": "Theme for thisisfine.co based on London",
     "demo": "https://thisisfine.co",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "engines": {
         "ghost": ">=2.0.0",
         "ghost-api": "v2"
