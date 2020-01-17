@@ -16,6 +16,12 @@ For the rest, just output a smaller background image
         {{> "icons/link"}}
       </div>
     </a>
+  {{else has tag="Fine"}}
+    <a href="{{url}}" class="post-card-link post-card-internal-link">
+      <div class="post-card-content">
+        <span>READ</span>
+      </div>
+    </a>
   {{else}}
     {{#if featured}}
       <a class="post-card-link" href="{{url}}">
